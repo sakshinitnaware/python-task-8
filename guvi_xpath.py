@@ -7,7 +7,18 @@ from webdriver_manager.chrome import ChromeDriverManager as CDM
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 
+chrome_options = Options()
+#  Run in headless mode
+chrome_options.add_argument("--headless")  
+#  Disable GPU acceleration (better performance in headless mode)
+chrome_options.add_argument("--disable-gpu")  
+#  Ensure elements are properly detected
+chrome_options.add_argument("--window-size=1920x1080")  
+# chrome_options.add_argument("--no-sandbox")  
+# #Fix memory-related issues
+# chrome_options.add_argument("--disable-dev-shm-usage")  
  
 #GuviLocators Class: Stores XPath locators to avoid redundancy and improve maintainability.Helps in keeping test cases clean and easy to update. 
 class GuviLocators:
@@ -25,7 +36,7 @@ class GuviAutomation:
          
     def __init__(self, url):
         self.url = url  # Store the URL of the website
-        self.driver = webdriver.Chrome(service=Svc(CDM().install()))  # Initialize Chrome WebDriver
+        self.driver = webdriver.Chrome(service=Svc(CDM().install()), options=chrome_options)  # Initialize Chrome WebDriver
         self.wait = WebDriverWait(self.driver, 10)  # Explicit wait to handle dynamic elements
 
      
