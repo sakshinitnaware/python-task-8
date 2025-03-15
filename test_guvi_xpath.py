@@ -44,7 +44,7 @@ class TestGuviLogin:
             # Navigates to the login page
             self.guvi.login_dashboard()  
             # Enters login credentials
-            self.guvi.login_credential("sakshinitnaware17@gmail.com", "SAKSHIw@1234")  
+            self.guvi.login_credential("abc@com", "@1234")  
             # Prints success message if fields are functional
             print("PASS: Input fields test passed")  
         except Exception as e:
